@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hyrox · Bianca</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--tx:#17181c;--mu:#5d606b;--bd:#e3e0d8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121317;--card:#1c1e24;--tx:#f1f1ee;--mu:#a0a3ae;--bd:#2c2f38}}
+:root[data-theme="dark"]{--bg:#121317;--card:#1c1e24;--tx:#f1f1ee;--mu:#a0a3ae;--bd:#2c2f38}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 Barlow,system-ui,sans-serif}
+.w{max-width:760px;margin:0 auto;padding:0 16px 48px}
+h1{font:800 clamp(44px,13vw,80px)/1.02 'Barlow Condensed',Impact,sans-serif;margin:0}
+.hero{background:linear-gradient(135deg,#17181c 0%,#2a1d4d 55%,#e8542a 130%);color:#fff;padding:36px 16px 26px;margin:0 -16px 20px}
+.hero .in{max-width:760px;margin:0 auto}
+.hero p{margin:10px 0 0;color:#e6e3f5}
+.day{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.day summary{list-style:none;cursor:pointer;padding:12px 16px;display:flex;align-items:center;gap:12px;font:800 22px 'Barlow Condensed',sans-serif;border-left:8px solid var(--c)}
+.day summary::-webkit-details-marker{display:none}
+.day summary span{font:500 14px Barlow,sans-serif;color:var(--mu);margin-left:auto;text-align:right}
+.b{padding:2px 16px 14px 24px}
+.b h4{margin:12px 0 4px;font:800 17px 'Barlow Condensed',sans-serif;color:var(--c)}
+.b ul{margin:0;padding-left:18px}
+.b li{margin:3px 0}
+.note{background:var(--card);border:1px dashed var(--bd);border-radius:12px;padding:14px 16px;margin:12px 0;color:var(--mu);font-size:15px}
+.note b{color:var(--tx)}
+.end{text-align:center;padding:60px 16px}
+.end h2{font:800 40px 'Barlow Condensed',sans-serif;margin:0 0 10px}
+.end p{color:var(--mu)}
+</style>
+</head>
+<body>
+<div class="w">
+<div id="end" class="end" hidden>
+<h2>Esta semana ya terminó</h2>
+<p>Pedile a tu coach el plan de la semana que viene.</p>
+</div>
+<div id="plan">
+<header class="hero"><div class="in">
+<h1>Bianca<br>Semana 1</h1>
+<p>Base · 19 al 25 de octubre. Motor aeróbico y técnica. El viernes cerramos con test de 2k Row.</p>
+</div></header>
+<div class="note"><b>Cómo leerlo:</b> RPE 7 = duro pero controlado. RIR 3 = te quedan 3 repeticiones. Z2 = ritmo en el que podés hablar. Si algo duele, bajá la carga y avisale al coach.</div>
+<div id="days"></div>
+</div>
+</div>
+<script>
+var D=[
+['Lunes 19','Running aeróbico','#1f9d6b',[['Calentamiento',['Movilidad articular + activación dinámica.']],['Principal',['50′ en Z2, pulso máximo 130–140.']],['Opcional',['Si hay tiempo y ganas: fuerza accesoria de bíceps, tríceps y zona media.','Sin cargar de más: mañana toca push.']]]],
+['Martes 20','Fuerza A + sled push','#e8a317',[['Fuerza',['Back squat 4×5 · RPE 6–7 / RIR 3 · pausa 1′30″','Bench press 3×10 · RIR 3 · pausa 1′30″','Zancada atrás 3×6/6 con barra frontal (20 kg si la técnica es buena) · pausa 2′','Wall ball 6×12 (6 kg ellas / 9 kg ellos) · pausa 30″ · prioridad: profundidad y recepción']],['Técnica de sled push',['6×12,5 m resistencia moderada · alterná brazos extendidos y flexionados · pecho paralelo al piso · recuperar 45″','3×(6 back squat 20–40 kg + 12,5 m sled push) · pausa 1′30″ · rápido, sin fatiga máxima']],['AMRAP 14′ · RPE 7',['250 m SkiErg','8 burpees box jump','12,5 m sled push (≈180 kg, resistencia 6-7-8)','20 m sandbag lunge (10 kg ellas / 20 kg ellos)','15 wall balls (6 kg / 9 kg)']],['Final',['8–10′ de bike suave + foam roll.']]]],
+['Miércoles 21','Running de umbral','#e8542a',[['Calentamiento',['10′ trote suave + movilidad dinámica.','Técnica: 4×20 m + 4×60 m progresivos, recuperar caminando.']],['Principal',['4×1.600 m a RPE 7–8 (umbral controlado) · 2′ caminando entre series.','Clave: las 4 series deben ser parejas. Anotá el tiempo de cada una.']],['Final',['10′ suave o bike.']]]],
+['Jueves 22','Fuerza B + sled pull','#7a3ff0',[['Fuerza',['Peso muerto 3×5 · RIR 3 · pausa 2′ · pesado y lento','Remo con barra 3×10 · RIR 3 · pausa 1′30″','Hip thrust 3×10 + 5″ isométrico en la última rep · RIR 2–3 · pausa 2′']],['Técnica de sled pull',['4×25 m: 12,5 m con cuerda + 12,5 m con TRX · 150–180 kg · jugá con resistencia 6-7-8','3×8 KB sumo deadlift (20 kg ellas / 24 kg ellos) + 12,5 m sled pull · pausa 1′30″ · técnica, no velocidad']],['2 rondas · RPE 6–7 · descanso 2′',['15 cal Row','25 m sled pull (cuerda + TRX)','12 burpee broad jumps cortos','100 m farmer carry (20 kg / 26 kg)','15/15 walking lunges con peso corporal, lentas']],['Final',['10′ de flexibilidad o foam.']]]],
+['Viernes 23','Ergómetros + test 2k Row','#d6204f',[['Calentamiento',['8′ de movilidad + calentamiento suave.','12′ Z2 (RPE 4–5): Ski, Row y Bike, 1′ por máquina, 3 vueltas.','4×30″ Row progresivos · 1′30″ suave.']],['Test',['2k Row. Anotá el tiempo: es tu punto de partida.']],['Final',['10′ de bike suave + foam.']]]],
+['Sábado 24','Libre','#8a8d99',[['Descanso',['Libre. Caminá, dormí bien, comé bien.']]]],
+['Domingo 25','Z2 largo','#1f9d6b',[['Principal',['Movilidad articular + activación dinámica.','50′ en Z2, a ritmo de poder hablar.']]]]];
+document.getElementById('days').innerHTML=D.map(function(d,j){return '<details class="day" style="--c:'+d[2]+'"'+(j==0?' open':'')+'><summary>'+d[0]+'<span>'+d[1]+'</span></summary><div class="b">'+d[3].map(function(s){return '<h4>'+s[0]+'</h4><ul>'+s[1].map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>'}).join('')+'</div></details>'}).join('');
+</script>
+</body>
+</html>
